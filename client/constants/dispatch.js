@@ -34,6 +34,7 @@ var dispatches = {
     date: 'DATE_IS_VALID',
   },
   showCreateProfile: 'SHOW_THE_CREATE_PROFILE_PAGE',
+  hideCreateProfile: 'SHOW_THE_CREATE_PROFILE_PAGE',
   tab: {
     selected: "A_TAB_HAS_BEEN_SELECTED"
   }
