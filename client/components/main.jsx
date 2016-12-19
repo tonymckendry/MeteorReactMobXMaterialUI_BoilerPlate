@@ -10,11 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { theme } from '../constants/theme'
 
 import { Login }  from './login/login.jsx'
-import { LeaguePicks }  from './leaguePicks/leaguePicks.jsx'
-import { MyPicks }  from './myPicks/myPicks.jsx'
 import { Profile }  from './profile/profile.jsx'
-import { Standings }  from './standings/standings.jsx'
-import { ThisWeek }  from './thisWeek/thisWeek.jsx'
 
 import { Footer } from './footer.jsx'
 
@@ -39,16 +35,16 @@ export const Main = React.createClass({
     let content
     switch (this.data.selectedTab) {
     case 1:
-      content = <MyPicks />
+      // content = <MyPicks />
       break;
     case 2:
-      content = <LeaguePicks />
+      // content = <LeaguePicks />
       break;
     case 3:
-      content = <Standings />
+      // content = <Standings />
       break;
     case 4:
-      content = <ThisWeek />
+      // content = <ThisWeek />
       break;
     case 5:
       content = <Profile />
