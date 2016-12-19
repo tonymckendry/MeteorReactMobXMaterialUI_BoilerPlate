@@ -18,10 +18,10 @@ export const Login = React.createClass({
           <VBox style={{'marginTop' : '10%'}}>
             <VBox style={{'textAlign' : 'center'}}>
               <h1 style={{'marginBottom' : '5px'}}>
-                NexGen Fantasy Sports
+                iVest
               </h1>
               <h3 style={{'marginTop' : '5px'}}>
-                The Evolution in Fantasy Sports
+                Some Tagline
               </h3>
             </VBox>
             <Divider style={{
@@ -32,11 +32,13 @@ export const Login = React.createClass({
             <VBox>
             <RaisedButton
               label='Login with Google'
+              disabled
               style={{
                 'margin' : '10px auto',
                 'width' : '250px',
               }}/>
             <RaisedButton
+              disabled 
               label='Login with Facebook'
               backgroundColor='#415dae'
               labelStyle={{
