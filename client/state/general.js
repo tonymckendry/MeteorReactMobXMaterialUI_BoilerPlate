@@ -11,3 +11,15 @@ State.modify(App.Constants.State.selectedTab, function(state=1){
       return state
   }
 })
+
+State.set(App.Constants.State.showCreateProfile, function(state=false){
+  switch (Action.type()) {
+    case App.Constants.Dispatch.showCreateProfile:
+      return true
+      break;
+      case App.Constants.Dispatch.hideCreateProfile:
+      return false
+    default:
+      return state
+  }
+})

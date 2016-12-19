@@ -8,8 +8,17 @@ import Divider from 'material-ui/Divider';
 
 export const Login = React.createClass({
   displayName: 'Login',
+  mixins: [ReactMeteorData],
+  getMeteorData(){
+      return{
+          checking: State.get(App.Constants.State.login.checking)
+      }
+  },
   _loginWithFacebook(){
     App.Utils.login.loginWithFacebook()
+  },
+  _signup(){
+    Dispatch(App.Constants.Dispatch.showCreateProfile)
   },
   render(){
     return(
@@ -30,53 +39,48 @@ export const Login = React.createClass({
               'marginBottom' : '10px'
             }}/>
             <VBox>
-            <RaisedButton
-              label='Login with Google'
-              disabled
-              style={{
-                'margin' : '10px auto',
-                'width' : '250px',
+            <form onSubmit={this._loginWithPassword}>
+               <VBox>
+                 <TextField
+                     floatingLabelText='Username'
+                     ref='username'
+                     style={{'margin' : '0 auto'}}/>
+                 <TextField
+                     ref='password'
+                     floatingLabelText='Password'
+                     style={{'margin' : '0 auto'}}
+                     type='password'/>
+                 <RaisedButton
+                     label='Login'
+                     style={{
+                         'width' : '250px',
+                         'margin' : '0 auto'
+                     }}
+                     type='submit'/>
+                 </VBox>
+               </form>
+              <Divider style={{
+                "width" : '40vw',
+                margin: 'auto',
+                'marginTop' : '20px'
               }}/>
-            <RaisedButton
-              disabled 
-              label='Login with Facebook'
-              backgroundColor='#415dae'
-              labelStyle={{
-                'color' : 'white',
-                'fontWeight' : '300'
-              }}
-              style={{
-                'margin' : '10px auto',
-                'width' : '250px',
-                'margin' : '0 auto',
-                'color' : 'white'
-              }}
-              onClick={this._loginWithFacebook}/>
-            </VBox>
-            <Divider style={{
-              'backgroundColor' : "#e0e0e0",
-              "width" : '500px',
-              'marginTop' : '20px'
-            }}/>
-            <VBox>
-              <TextField
-              floatingLabelText='Username'
-              style={{'margin' : '0 auto'}}/>
-              <TextField
-              floatingLabelText='Password'
-              style={{'margin' : '0 auto'}}/>
               <RaisedButton
-              label='Login'
-              style={{
-                'width' : '250px',
-                'margin' : '0 auto'
-              }}
-              primary/>
+                label='Signup'
+                style={{
+                    'width' : '250px',
+                    'margin' : '10px auto'
+                }}
+                onClick={this._signup}/>
             </VBox>
           </VBox>
         </Center>
       </Page>
-
     )
-  }
+  },
+  _loginWithPassword(evt){
+      evt.preventDefault()
+      console.log('logging in with password and supposedly dispatching')
+      Dispatch(App.Constants.Dispatch.login.checking)
+      App.Utils.login.loginWithPassword(this.refs.username.getValue(), this.refs.password.getValue())
+    }
 })

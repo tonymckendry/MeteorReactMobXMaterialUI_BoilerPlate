@@ -10,6 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { theme } from '../constants/theme'
 
 import { Login }  from './login/login.jsx'
+import { CreateProfile }  from './profile/createProfile.jsx'
 import { Profile }  from './profile/profile.jsx'
 
 import { Footer } from './footer.jsx'
@@ -28,10 +29,14 @@ export const Main = React.createClass({
   getMeteorData(){
     return{
       loggedIn: State.get(App.Constants.State.loggedIn),
-      selectedTab: State.get(App.Constants.State.selectedTab)
+      selectedTab: State.get(App.Constants.State.selectedTab),
+      showCreateProfile: State.get(App.Constants.State.showCreateProfile),
     }
   },
   render(){
+    if (this.data.showCreateProfile) {
+      return <CreateProfile/>
+    }
     let content
     switch (this.data.selectedTab) {
     case 1:
