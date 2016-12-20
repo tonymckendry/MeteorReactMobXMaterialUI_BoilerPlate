@@ -12,6 +12,9 @@ import { theme } from '../constants/theme'
 import { Login }  from './login/login.jsx'
 import { CreateProfile }  from './profile/createProfile.jsx'
 import { Profile }  from './profile/profile.jsx'
+import { Dashboard }  from './dashboard/dashboard.jsx'
+import { Market }  from './market/market.jsx'
+import { People }  from './people/people.jsx'
 
 import { Footer } from './footer.jsx'
 
@@ -40,18 +43,15 @@ export const Main = React.createClass({
     let content
     switch (this.data.selectedTab) {
     case 1:
-      // content = <MyPicks />
+      content = <Dashboard />
       break;
     case 2:
-      // content = <LeaguePicks />
+      content = <Market />
       break;
     case 3:
-      // content = <Standings />
+      content = <People />
       break;
     case 4:
-      // content = <ThisWeek />
-      break;
-    case 5:
       content = <Profile />
       break;
     default:
@@ -62,7 +62,7 @@ export const Main = React.createClass({
     }
     console.log('main is rendering')
     return (
-      <Page>
+      <Page style={{backgroundColor: '#212121'}}>
         <Box>
           {content}
           <Footer />

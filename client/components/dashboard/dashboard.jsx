@@ -4,8 +4,8 @@ import { Center, Page, VBox, Box } from 'react-layout-components';
 import AppBar from 'material-ui/AppBar';
 
 
-export const Profile = React.createClass({
-  displayName: 'Profile',
+export const Dashboard = React.createClass({
+  displayName: 'Dashboard',
   mixins: [ReactMeteorData],
   getMeteorData(){
       return{
@@ -14,7 +14,7 @@ export const Profile = React.createClass({
   },
   render(){
     return(
-    <AppBar style={{textAlign: 'center', backgroundColor: '#455a64'}} title='Profile' showMenuIconButton={false}/>  
+    <AppBar style={{textAlign: 'center', backgroundColor: '#455a64'}} title='Dashboard' showMenuIconButton={false}/>  
     )
   }
 })

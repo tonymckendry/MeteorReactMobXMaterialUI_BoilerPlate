@@ -55,6 +55,7 @@ export const Footer = React.createClass({
         <VBox style={{
           'position' : 'absolute',
           'bottom' : '0',
+          backgroundColor: 'white'
         }}
         justifyContent='space-between'>
           <Divider style={{
