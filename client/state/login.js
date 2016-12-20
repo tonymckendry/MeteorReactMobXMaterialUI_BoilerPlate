@@ -1,6 +1,31 @@
 import { Meteor } from 'meteor/meteor';
 import { Action, Dispatch, Register, State } from 'meteor/meteorflux:meteorflux';
 
+State.set(App.Constants.State.loggedIn, ()=>{
+  if (Meteor.user()) {
+    console.log('user is logged in ********')
+    return true
+  } else {
+    return false
+  }
+})
+
+State.modify(App.Constants.State.login.checking, function(state=false){
+  switch (Action.type()) {
+    case App.Constants.Dispatch.login.checking:
+      console.log('checking login')
+      return true
+      break;
+    case App.Constants.Dispatch.login.success:
+    case App.Constants.Dispatch.login.fail:
+      console.log('login checked')
+      return false
+      break;
+    default:
+      return state
+  }
+})
+
 State.modify(App.Constants.State.loggedIn, function(state=false){
   switch (Action.type()) {
     case App.Constants.Dispatch.login.success:

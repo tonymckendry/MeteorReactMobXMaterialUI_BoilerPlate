@@ -18,6 +18,7 @@ State.set(App.Constants.State.showCreateProfile, function(state=false){
       return true
       break;
       case App.Constants.Dispatch.hideCreateProfile:
+      console.log('hide create profile')
       return false
     default:
       return state

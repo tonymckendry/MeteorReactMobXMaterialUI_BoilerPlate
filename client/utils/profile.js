@@ -35,6 +35,7 @@ App.Utils.profile.createUser = function(username, email, password, verify, first
           Dispatch(App.Constants.Dispatch.login.fail)
           console.log(error)
         } else {
+          console.log('should be hiding the create profile')
           Dispatch(App.Constants.Dispatch.hideCreateProfile).then(Dispatch(App.Constants.Dispatch.login.success))
         }
       })

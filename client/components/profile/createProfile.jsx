@@ -323,7 +323,6 @@ export const CreateProfile = React.createClass({
     console.log(this.data.selectedState)
   },
   render(){
-    console.log(this.data.selectedState)
     if (this.data.checking === true) {
       return (
         <Loading/>
