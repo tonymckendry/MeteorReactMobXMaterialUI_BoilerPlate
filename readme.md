@@ -1,1 +1,1 @@
-Tusker App
+Meteor Boilerplate with MOBX and Material-UI
