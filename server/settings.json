@@ -1,9 +1,3 @@
 {
   "public":{},
-  "galaxy.meteor.com":{
-    "env":{
-      "ROOT_URL": "https://www.ivest.guru",
-      "MONGO_URL": "mongodb://tuskeroo:F13nNnt2NEJU@ds139678-a0.mlab.com:39678,ds139678-a1.mlab.com:39678/tusker_production?replicaSet=rs-ds139678"
-    }
-  }
 }
