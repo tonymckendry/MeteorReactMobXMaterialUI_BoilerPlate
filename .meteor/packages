@@ -27,3 +27,4 @@ shell-server@0.2.4
 accounts-password@1.4.0
 facebook-config-ui@1.0.0
 dynamic-import
+aldeed:simple-schema
