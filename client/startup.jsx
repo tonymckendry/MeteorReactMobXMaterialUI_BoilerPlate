@@ -15,7 +15,7 @@ const onLoggedOut = autorun(() => {
 
 if (Meteor.isClient) {
     Meteor.startup(() => {
-        injectTapEventPlugin()
+        // injectTapEventPlugin()
         onLoggedOut.start()
 
         ReactDOM.render(<Main />, document.getElementById('render-target'))

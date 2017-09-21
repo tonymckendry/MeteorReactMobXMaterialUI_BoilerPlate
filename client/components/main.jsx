@@ -1,12 +1,19 @@
 import React from 'react'
-import { Center, Page, Box } from 'react-layout-components'
+import { Center, Page, Box, VBox } from 'react-layout-components'
 import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
 
 import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/raisedButton'
 import Drawer from 'material-ui/Drawer'
+import Avatar from 'material-ui/Avatar'
+import { List, ListItem } from 'material-ui/List'
+import Paper from 'material-ui/Paper'
 import { observer } from 'mobx-react'
+import DashboardIcon from 'material-ui/svg-icons/action/dashboard'
+import People from 'material-ui/svg-icons/social/people'
+import Timeline from 'material-ui/svg-icons/action/timeline'
+import SettingsIcon from 'material-ui/svg-icons/action/settings'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -23,7 +30,7 @@ export const Main = observer(
         displayName: 'Main',
         render() {
             let component
-            if (UserState.authenticated) {
+            if (UserState.authenticated && UserState.currentUser && UserState.currentUser.profile) {
                 let content
                 switch (GeneralState.appFunction) {
                     case 'Dashboard':
@@ -41,15 +48,59 @@ export const Main = observer(
                 }
                 component = (
                     <Page>
-                        <Drawer open={GeneralState.drawerOpen} docked={false} />
-                        <AppBar
-                            title="Persona"
-                            onLeftIconButtonTouchTap={GeneralState.toggleDrawer}
-                            onRequestChange={o => {
-                                console.log(o)
-                                GeneralState.toggleDrawer()
-                            }}
-                        />
+                        <Drawer open={GeneralState.drawerOpen} docked={false} onRequestChange={open => GeneralState.toggleDrawer(open)}>
+                            <Paper style={{ padding: '20px', backgroundColor: PersonaTheme.palette.primary1Color, color: 'white' }}>
+                                <Box>
+                                    <Center>
+                                        <Avatar size={50}>
+                                            <span style={{ fontFamily: 'sans-serif' }}>
+                                                {UserState.currentUser.profile.firstName[0]}
+                                                {UserState.currentUser.profile.lastName[0]}
+                                            </span>
+                                        </Avatar>
+                                    </Center>
+                                    <VBox style={{ marginLeft: '15px' }}>
+                                        <h2 style={{ margin: '0', marginTop: '10px' }}>{UserState.currentUser.profile.firstName}</h2>
+                                        <h2 style={{ margin: '0' }}>{UserState.currentUser.profile.lastName}</h2>
+                                    </VBox>
+                                </Box>
+                            </Paper>
+                            <List>
+                                <ListItem
+                                    onClick={() => {
+                                        GeneralState.changeAppFunction('Dashboard')
+                                    }}
+                                    primaryText="Dashboard"
+                                    leftIcon={<DashboardIcon color={GeneralState.appFunction === 'Dashboard' ? PersonaTheme.palette.accent1Color : null} />}
+                                    style={{ color: GeneralState.appFunction === 'Dashboard' ? PersonaTheme.palette.accent1Color : null }}
+                                />
+                                <ListItem
+                                    onClick={() => {
+                                        GeneralState.changeAppFunction('PeopleList')
+                                    }}
+                                    primaryText="People List"
+                                    leftIcon={<People color={GeneralState.appFunction === 'PeopleList' ? PersonaTheme.palette.accent1Color : null} />}
+                                    style={{ color: GeneralState.appFunction === 'PeopleList' ? PersonaTheme.palette.accent1Color : null }}
+                                />
+                                <ListItem
+                                    onClick={() => {
+                                        GeneralState.changeAppFunction('Analytics')
+                                    }}
+                                    primaryText="Analytics"
+                                    leftIcon={<Timeline color={GeneralState.appFunction === 'Analytics' ? PersonaTheme.palette.accent1Color : null} />}
+                                    style={{ color: GeneralState.appFunction === 'Analytics' ? PersonaTheme.palette.accent1Color : null }}
+                                />
+                                <ListItem
+                                    onClick={() => {
+                                        GeneralState.changeAppFunction('Settings')
+                                    }}
+                                    primaryText="Settings"
+                                    leftIcon={<SettingsIcon color={GeneralState.appFunction === 'Settings' ? PersonaTheme.palette.accent1Color : null} />}
+                                    style={{ color: GeneralState.appFunction === 'Settings' ? PersonaTheme.palette.accent1Color : null }}
+                                />
+                            </List>
+                        </Drawer>
+                        <AppBar title="Persona" onLeftIconButtonTouchTap={GeneralState.toggleDrawer} style={{ boxShadow: '0px 2px 5px rgba(0,0,0,.5)' }} />
                         {content}
                     </Page>
                 )
