@@ -2,6 +2,7 @@ import React from 'react'
 import { Center, Page, Box, VBox } from 'react-layout-components'
 import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
+import { OnResize } from 'react-window-mixins'
 
 import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/raisedButton'
@@ -14,6 +15,8 @@ import DashboardIcon from 'material-ui/svg-icons/action/dashboard'
 import People from 'material-ui/svg-icons/social/people'
 import Timeline from 'material-ui/svg-icons/action/timeline'
 import SettingsIcon from 'material-ui/svg-icons/action/settings'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -28,6 +31,7 @@ import { UserState, GeneralState } from '../directory/singletons'
 export const Main = observer(
     React.createClass({
         displayName: 'Main',
+        mixins: [OnResize],
         _renderDrawer() {
             return (
                 <Drawer open={GeneralState.drawerOpen} docked={false} onRequestChange={open => GeneralState.toggleDrawer(open)}>
@@ -100,7 +104,7 @@ export const Main = observer(
                         content = <Dashboard />
                         break
                     case 'PeopleList':
-                        content = <PeopleList />
+                        content = <PeopleList height={this.state.window.height} />
                         break
                     case 'Analytics':
                         content = <Analytics />
