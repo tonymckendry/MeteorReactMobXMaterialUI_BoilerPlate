@@ -11,7 +11,7 @@ class GeneralState {
     @observable appFunction = 'Dashboard'
 
     @action
-    setAppFunction = appFunc => {
+    changeAppFunction = appFunc => {
         this.appFunction = appFunc
     }
 

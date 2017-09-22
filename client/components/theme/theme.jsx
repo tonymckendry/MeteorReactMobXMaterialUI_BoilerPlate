@@ -1,4 +1,4 @@
-import { indigo500, indigo700, blue500, grey100, grey300, grey400, grey500, white, darkBlack, fullBlack } from 'material-ui/styles/colors'
+import { indigo500, indigo700, blue500, grey100, grey300, grey400, grey500, white, darkBlack, fullBlack, pink500 } from 'material-ui/styles/colors'
 import { fade } from 'material-ui/utils/colorManipulator'
 import spacing from 'material-ui/styles/spacing'
 
@@ -16,7 +16,7 @@ export const PersonaTheme = {
         primary2Color: indigo700,
         primary3Color: grey400,
         accent1Color: blue500,
-        accent2Color: grey100,
+        accent2Color: pink500,
         accent3Color: grey500,
         textColor: darkBlack,
         secondaryTextColor: fade(darkBlack, 0.54),
