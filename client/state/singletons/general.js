@@ -13,6 +13,7 @@ class GeneralState {
     @action
     changeAppFunction = appFunc => {
         this.appFunction = appFunc
+        this.drawerOpen = false
     }
 
     @observable drawerOpen = false
