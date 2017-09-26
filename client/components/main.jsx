@@ -16,7 +16,9 @@ import People from 'material-ui/svg-icons/social/people'
 import Timeline from 'material-ui/svg-icons/action/timeline'
 import SettingsIcon from 'material-ui/svg-icons/action/settings'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
+import IconButton from 'material-ui/IconButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import KeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -26,7 +28,7 @@ import Dashboard from './dashboard/dashboard'
 import PeopleList from './peopleList/peopleList'
 import Analytics from './analytics/analytics'
 import Settings from './settings/settings'
-import { UserState, GeneralState } from '../directory/singletons'
+import { UserState, GeneralState, PeopleState } from '../directory/singletons'
 
 export const Main = observer(
     React.createClass({
@@ -116,7 +118,24 @@ export const Main = observer(
                 component = (
                     <Page>
                         {this._renderDrawer()}
-                        <AppBar title="Persona" onLeftIconButtonTouchTap={GeneralState.toggleDrawer} style={{ boxShadow: '0px 2px 5px rgba(0,0,0,.5)' }} />
+                        <AppBar
+                            title="Persona"
+                            iconElementLeft={
+                                PeopleState.panelOpen ? (
+                                    <IconButton>
+                                        <KeyboardArrowLeft />
+                                    </IconButton>
+                                ) : null
+                            }
+                            onLeftIconButtonTouchTap={
+                                PeopleState.panelOpen
+                                    ? () => {
+                                          PeopleState.setPanelOpen(false)
+                                      }
+                                    : GeneralState.toggleDrawer
+                            }
+                            style={{ boxShadow: '0px 2px 5px rgba(0,0,0,.5)' }}
+                        />
                         {content}
                     </Page>
                 )
