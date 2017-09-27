@@ -1,6 +1,10 @@
 import { computed, observable, action, autorun } from 'mobx'
 import { Meteor } from 'meteor/meteor'
 import _ from 'lodash'
+import observe from '../../observe-cursor'
+
+import { SubscriptionState } from '../../directory/singletons'
+import { People } from '../../../imports/api/people/people'
 
 class People {
     @observable allPeople = []
@@ -84,3 +88,14 @@ class People {
 
 const singleton = new People()
 export default singleton
+
+if (Meteor.isClient) {
+    Meteor.startup(() => {
+        Tracker.autorun(function() {
+            if (Meteor.user() && SubscriptionState.handles.people.ready()) {
+                let cursor = People.find({})
+                observe('People', singleton.allPeople, SubscriptionState.handles.people, cursor, singleton.loading)
+            }
+        })
+    })
+}
