@@ -1,5 +1,6 @@
 const PersonStatus = {
-    education: {
+    ed: {
+        none: 'None',
         one: 1,
         two: 2,
         three: 3,
@@ -12,21 +13,24 @@ const PersonStatus = {
         ten: 10,
         eleven: 11,
         twelve: 12,
-        postTwelve: 13
+        a0: 'A0',
+        a1: 'A1',
+        a2: 'A2',
+        a3: 'A3'
     },
-    reintegration: {
-        street: 'street',
-        reintegration: 'reintegration',
-        center: 'center',
-        jail: 'jail',
-        alternativeHousing: 'alternativeHousing',
-        passedAway: 'passedAway'
+    reint: {
+        streets: 'Streets',
+        reintegrated: 'Reintegrated',
+        center: 'Center',
+        jail: 'Jail',
+        altHousing: 'Alternative Housing',
+        deceased: 'Deceased'
     },
     health: {
         HIV: {
             positive: 'HIV Positive',
             negative: 'HIV Negative',
-            unnkown: 'HIV Unknown'
+            unknown: 'HIV Unknown'
         }
     }
 }
