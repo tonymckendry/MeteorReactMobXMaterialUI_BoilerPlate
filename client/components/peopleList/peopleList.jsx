@@ -16,6 +16,8 @@ import MenuItem from 'material-ui/MenuItem'
 import { PeopleState } from '../../directory/singletons'
 import { PersonaTheme } from '../theme/theme'
 
+import PersonStatus from '../../constants/status'
+
 const PeopleList = ({ height }) => {
     console.log(PeopleState.allPeople)
     return (
@@ -24,7 +26,8 @@ const PeopleList = ({ height }) => {
                 onClick={() => {
                     PeopleState.setPanelOpen(true)
                 }}
-                style={{ position: 'absolute', bottom: 20, right: 20 }}>
+                style={{ position: 'absolute', bottom: 20, right: 20 }}
+            >
                 <ContentAdd />
             </FloatingActionButton>
             <ReactCSSTransitionGroup transitionName="example">
@@ -122,12 +125,14 @@ const PeopleList = ({ height }) => {
                                     value={PeopleState.newPersonForm.reintegration}
                                     onChange={(event, key, payload) => {
                                         PeopleState.updateForm('reintegration', payload)
-                                    }}>
-                                    <MenuItem primaryText="Street" value="street" />
-                                    <MenuItem primaryText="Masana" value="masana" />
-                                    <MenuItem primaryText="Family Home" value="family home" />
-                                    <MenuItem primaryText="Jail" value="jail" />
-                                    <MenuItem primaryText="Deceased" value="deceased" />
+                                    }}
+                                >
+                                    <MenuItem primaryText={PersonStatus.reint.streets} value={PersonStatus.reint.streets} />
+                                    <MenuItem primaryText={PersonStatus.reint.reintegrated} value={PersonStatus.reint.reintegrated} />
+                                    <MenuItem primaryText={PersonStatus.reint.center} value={PersonStatus.reint.center} />
+                                    <MenuItem primaryText={PersonStatus.reint.jail} value={PersonStatus.reint.jail} />
+                                    <MenuItem primaryText={PersonStatus.reint.altHousing} value={PersonStatus.reint.altHousing} />
+                                    <MenuItem primaryText={PersonStatus.reint.deceased} value={PersonStatus.reint.deceased} />
                                 </SelectField>
                                 <SelectField
                                     floatingLabelText="Education Level"
@@ -135,11 +140,25 @@ const PeopleList = ({ height }) => {
                                     style={{ width: '35vw' }}
                                     onChange={(event, key, payload) => {
                                         PeopleState.updateForm('education', payload)
-                                    }}>
-                                    <MenuItem primaryText="None" value="none" />
-                                    <MenuItem primaryText="K-3rd Grade" value="k-3" />
-                                    <MenuItem primaryText="4th-7th Grade" value="4-7" />
-                                    <MenuItem primaryText="8th-12th Grade" value="8-12" />
+                                    }}
+                                >
+                                    <MenuItem primaryText={PersonStatus.ed.one} value={PersonStatus.ed.one} />
+                                    <MenuItem primaryText={PersonStatus.ed.two} value={PersonStatus.ed.two} />
+                                    <MenuItem primaryText={PersonStatus.ed.three} value={PersonStatus.ed.three} />
+                                    <MenuItem primaryText={PersonStatus.ed.four} value={PersonStatus.ed.four} />
+                                    <MenuItem primaryText={PersonStatus.ed.five} value={PersonStatus.ed.five} />
+                                    <MenuItem primaryText={PersonStatus.ed.six} value={PersonStatus.ed.six} />
+                                    <MenuItem primaryText={PersonStatus.ed.seven} value={PersonStatus.ed.seven} />
+                                    <MenuItem primaryText={PersonStatus.ed.eight} value={PersonStatus.ed.eight} />
+                                    <MenuItem primaryText={PersonStatus.ed.nine} value={PersonStatus.ed.nine} />
+                                    <MenuItem primaryText={PersonStatus.ed.ten} value={PersonStatus.ed.ten} />
+                                    <MenuItem primaryText={PersonStatus.ed.eleven} value={PersonStatus.ed.eleven} />
+                                    <MenuItem primaryText={PersonStatus.ed.twelve} value={PersonStatus.ed.twelve} />
+                                    <MenuItem primaryText={PersonStatus.ed.a0} value={PersonStatus.ed.a0} />
+                                    <MenuItem primaryText={PersonStatus.ed.a1} value={PersonStatus.ed.a1} />
+                                    <MenuItem primaryText={PersonStatus.ed.a2} value={PersonStatus.ed.a2} />
+                                    <MenuItem primaryText={PersonStatus.ed.a3} value={PersonStatus.ed.a3} />
+                                    <MenuItem primaryText={PersonStatus.ed.none} value={PersonStatus.ed.none} />
                                 </SelectField>
                             </Box>
                             <Box justifyContent="space-around">
@@ -150,10 +169,11 @@ const PeopleList = ({ height }) => {
                                     onChange={(event, key, payload) => {
                                         console.log(payload)
                                         PeopleState.updateForm('health', payload)
-                                    }}>
-                                    <MenuItem primaryText="HIV Negative" value="negative" />
-                                    <MenuItem primaryText="HIV Positive" value="positive" />
-                                    <MenuItem primaryText="Unknown" value="unknown" />
+                                    }}
+                                >
+                                    <MenuItem primaryText={PersonStatus.health.HIV.positive} value={PersonStatus.health.HIV.positive} />
+                                    <MenuItem primaryText={PersonStatus.health.HIV.negative} value={PersonStatus.health.HIV.negative} />
+                                    <MenuItem primaryText={PersonStatus.health.HIV.unknown} value={PersonStatus.health.HIV.unknown} />
                                 </SelectField>
                             </Box>
                         </Paper>
