@@ -17,6 +17,7 @@ import { PeopleState } from '../../directory/singletons'
 import { PersonaTheme } from '../theme/theme'
 
 const PeopleList = ({ height }) => {
+    console.log(PeopleState.allPeople)
     return (
         <Page>
             <FloatingActionButton

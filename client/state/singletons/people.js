@@ -1,8 +1,13 @@
 import { computed, observable, action, autorun } from 'mobx'
 import { Meteor } from 'meteor/meteor'
 import _ from 'lodash'
+import observe from '../../observe-cursor'
 
-class People {
+import { SubscriptionState } from '../../directory/singletons'
+import { Person } from '../../directory/prototypes'
+import { People } from '../../../imports/api/people/people'
+
+class PeopleState {
     @observable allPeople = []
 
     @observable panelOpen = false
@@ -82,5 +87,16 @@ class People {
     }
 }
 
-const singleton = new People()
+const singleton = new PeopleState()
 export default singleton
+
+if (Meteor.isClient) {
+    Meteor.startup(() => {
+        Tracker.autorun(function() {
+            if (Meteor.user() && SubscriptionState.handles.people.ready()) {
+                let cursor = People.find({})
+                observe('People', singleton.allPeople, SubscriptionState.handles.people, cursor, singleton.loading, Person)
+            }
+        })
+    })
+}
