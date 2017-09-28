@@ -18,6 +18,8 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
+    "lodash.foreach": "^4.5.0",
+    "lodash.isundefined": "^3.0.1",
     "material-ui": "^0.19.1",
     "meteor-node-stubs": "~0.2.11",
     "mobx": "^3.2.2",

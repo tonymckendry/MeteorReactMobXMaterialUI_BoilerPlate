@@ -4,9 +4,10 @@ import _ from 'lodash'
 import observe from '../../observe-cursor'
 
 import { SubscriptionState } from '../../directory/singletons'
+import { Person } from '../../directory/prototypes'
 import { People } from '../../../imports/api/people/people'
 
-class People {
+class PeopleState {
     @observable allPeople = []
 
     @observable panelOpen = false
@@ -86,7 +87,7 @@ class People {
     }
 }
 
-const singleton = new People()
+const singleton = new PeopleState()
 export default singleton
 
 if (Meteor.isClient) {
@@ -94,7 +95,7 @@ if (Meteor.isClient) {
         Tracker.autorun(function() {
             if (Meteor.user() && SubscriptionState.handles.people.ready()) {
                 let cursor = People.find({})
-                observe('People', singleton.allPeople, SubscriptionState.handles.people, cursor, singleton.loading)
+                observe('People', singleton.allPeople, SubscriptionState.handles.people, cursor, singleton.loading, Person)
             }
         })
     })
