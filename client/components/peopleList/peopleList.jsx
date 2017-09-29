@@ -7,11 +7,15 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import FlatButton from 'material-ui/FlatButton'
 import Close from 'material-ui/svg-icons/navigation/close'
+import KeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import IconButton from 'material-ui/IconButton'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import Avatar from 'material-ui/Avatar'
+import Divider from 'material-ui/Divider'
+import { List, ListItem } from 'material-ui/List'
 
 import { PeopleState } from '../../directory/singletons'
 import { PersonaTheme } from '../theme/theme'
@@ -21,18 +25,38 @@ import PersonStatus from '../../constants/status'
 const PeopleList = ({ height }) => {
     console.log(PeopleState.allPeople)
     return (
-        <Page>
+        <Page style={{ marginTop: 64, height: height - 64 }}>
+            <List>
+                {PeopleState.allPeople.map(p => {
+                    console.log(p)
+                    return (
+                        <div>
+                            <ListItem
+                                rightIcon={<KeyboardArrowRight />}
+                                leftAvatar={
+                                    <Avatar>
+                                        {p.person.info.firstName[0]}
+                                        {p.person.info.lastName[0]}
+                                    </Avatar>
+                                }
+                                primaryText={p.person.info.firstName + ' ' + p.person.info.lastName}
+                                secondaryText={p.person.status.reintegration}
+                            />
+                            <Divider />
+                        </div>
+                    )
+                })}
+            </List>
             <FloatingActionButton
                 onClick={() => {
                     PeopleState.setPanelOpen(true)
                 }}
-                style={{ position: 'absolute', bottom: 20, right: 20 }}
-            >
+                style={{ position: 'absolute', bottom: 20, right: 20 }}>
                 <ContentAdd />
             </FloatingActionButton>
             <ReactCSSTransitionGroup transitionName="example">
                 {PeopleState.panelOpen ? (
-                    <div className="panel" style={{ height: height - 64, marginTop: 64 }}>
+                    <div className="panel" style={{ height: height, marginTop: -15 }}>
                         <Subheader>Basic Info</Subheader>
                         <Paper>
                             <Center column>
@@ -125,8 +149,7 @@ const PeopleList = ({ height }) => {
                                     value={PeopleState.newPersonForm.reintegration}
                                     onChange={(event, key, payload) => {
                                         PeopleState.updateForm('reintegration', payload)
-                                    }}
-                                >
+                                    }}>
                                     <MenuItem primaryText={PersonStatus.reint.streets} value={PersonStatus.reint.streets} />
                                     <MenuItem primaryText={PersonStatus.reint.reintegrated} value={PersonStatus.reint.reintegrated} />
                                     <MenuItem primaryText={PersonStatus.reint.center} value={PersonStatus.reint.center} />
@@ -140,8 +163,7 @@ const PeopleList = ({ height }) => {
                                     style={{ width: '35vw' }}
                                     onChange={(event, key, payload) => {
                                         PeopleState.updateForm('education', payload)
-                                    }}
-                                >
+                                    }}>
                                     <MenuItem primaryText={PersonStatus.ed.one} value={PersonStatus.ed.one} />
                                     <MenuItem primaryText={PersonStatus.ed.two} value={PersonStatus.ed.two} />
                                     <MenuItem primaryText={PersonStatus.ed.three} value={PersonStatus.ed.three} />
@@ -169,8 +191,7 @@ const PeopleList = ({ height }) => {
                                     onChange={(event, key, payload) => {
                                         console.log(payload)
                                         PeopleState.updateForm('health', payload)
-                                    }}
-                                >
+                                    }}>
                                     <MenuItem primaryText={PersonStatus.health.HIV.positive} value={PersonStatus.health.HIV.positive} />
                                     <MenuItem primaryText={PersonStatus.health.HIV.negative} value={PersonStatus.health.HIV.negative} />
                                     <MenuItem primaryText={PersonStatus.health.HIV.unknown} value={PersonStatus.health.HIV.unknown} />
