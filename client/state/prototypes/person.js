@@ -7,7 +7,7 @@ import { SubscriptionState } from '../../directory/singletons'
 import { People } from '../../../imports/api/people/people'
 
 class Person {
-    constructor(person) {
+    constructor(id, person) {
         this.person = person
     }
 

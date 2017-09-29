@@ -73,7 +73,7 @@ class PeopleState {
                 phoneNumber: this.newPersonForm.phone,
                 dob: this.newPersonForm.dob
             },
-            status: { living: this.newPersonForm.living, education: this.newPersonForm.education, health: this.newPersonForm.health },
+            status: { reintegration: this.newPersonForm.reintegration, education: this.newPersonForm.education, health: this.newPersonForm.health },
             comments: []
         }
         Meteor.call('createNewPerson', newPerson, err => {
