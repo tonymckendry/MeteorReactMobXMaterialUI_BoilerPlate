@@ -11,10 +11,24 @@ class PeopleState {
     @observable allPeople = []
 
     @observable panelOpen = false
+    @observable showDetail = false
+    @observable personToDetail
 
     @action
     setPanelOpen = open => {
         this.panelOpen = open
+    }
+
+    @action
+    setShowDetail = show => {
+        console.log('show detail')
+        this.showDetail = show
+    }
+
+    @action
+    setPersonToDetail = person => {
+        this.personToDetail = person
+        this.showDetail = true
     }
 
     @observable
@@ -64,7 +78,7 @@ class PeopleState {
             info: {
                 firstName: this.newPersonForm.firstName,
                 lastName: this.newPersonForm.lastName,
-                address1: this.newPersonForm.address1,
+                address1: this.newPersonForm.address,
                 address2: this.newPersonForm.address2,
                 city: this.newPersonForm.city,
                 state: this.newPersonForm.state,
