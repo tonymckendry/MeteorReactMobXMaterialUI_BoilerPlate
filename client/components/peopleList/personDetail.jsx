@@ -79,7 +79,7 @@ const renderInfoSection = () => {
                                 handleChange('info', 'lastName', v)
                             }}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.lastName}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.lastName : PeopleState.personToDetail.person.info.lastName}
                             floatingLabelText="Last Name"
                             style={{ width: '35vw' }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
@@ -91,7 +91,7 @@ const renderInfoSection = () => {
                         }}
                         inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                         underlineShow={PeopleState.editSection === 'info'}
-                        value={PeopleState.personToDetail.person.info.address}
+                        value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.address : PeopleState.personToDetail.person.info.address}
                         floatingLabelText="Address"
                         style={{ width: '80vw' }}
                     />
@@ -101,7 +101,7 @@ const renderInfoSection = () => {
                         }}
                         inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                         underlineShow={PeopleState.editSection === 'info'}
-                        value={PeopleState.personToDetail.person.info.address2}
+                        value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.address2 : PeopleState.personToDetail.person.info.address2}
                         floatingLabelText="Address 2"
                         style={{ width: '80vw' }}
                     />
@@ -112,7 +112,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.city}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.city : PeopleState.personToDetail.person.info.city}
                             floatingLabelText="City"
                             style={{ width: '35vw' }}
                         />
@@ -122,7 +122,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.state}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.state : PeopleState.personToDetail.person.info.state}
                             floatingLabelText="State"
                             style={{ width: '35vw' }}
                         />
@@ -134,7 +134,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.country}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.country : PeopleState.personToDetail.person.info.country}
                             floatingLabelText="Country"
                             style={{ width: '35vw' }}
                         />
@@ -144,7 +144,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.postalCode}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.postalCode : PeopleState.personToDetail.person.info.postalCode}
                             floatingLabelText="Postal Code"
                             style={{ width: '35vw' }}
                         />
@@ -156,7 +156,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.dob}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.dob : PeopleState.personToDetail.person.info.dob}
                             floatingLabelText="Date of Birth"
                             style={{ width: '35vw' }}
                         />
@@ -166,7 +166,7 @@ const renderInfoSection = () => {
                             }}
                             inputStyle={PeopleState.editSection !== 'info' ? inputStyle : null}
                             underlineShow={PeopleState.editSection === 'info'}
-                            value={PeopleState.personToDetail.person.info.phoneNumber}
+                            value={PeopleState.editSection === 'info' ? PeopleState.editFormFields.info.phoneNumber : PeopleState.personToDetail.person.info.phoneNumber}
                             floatingLabelText="Phone #"
                             style={{ width: '35vw' }}
                         />
