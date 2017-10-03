@@ -24,7 +24,6 @@ const handleChange = (section, field, value) => {
 }
 
 const PersonDetail = ({ height }) => {
-    console.log(PeopleState.editSection)
     return (
         <ReactCSSTransitionGroup transitionName="example">
             {PeopleState.showDetail ? (
@@ -178,17 +177,69 @@ const renderInfoSection = () => {
 }
 
 const renderStatusSection = () => {
-    return (
-        <div>
-            <Subheader>
-                <Center justifyContent="space-between">
-                    <span>Status</span>
-                    <IconButton>
-                        <Edit />
-                    </IconButton>
-                </Center>
-            </Subheader>
-            <Paper>
+    let content
+    if (PeopleState.editSection === 'status') {
+        content = (
+            <div>
+                <Box justifyContent="space-around">
+                    <SelectField
+                        floatingLabelText="Reintegration/Living Status"
+                        style={{ width: '35vw' }}
+                        value={PeopleState.editFormFields.status.reintegration}
+                        onChange={(event, key, payload) => {
+                            handleChange('status', 'reintegration', payload)
+                        }}>
+                        <MenuItem primaryText={PersonStatus.reint.streets} value={PersonStatus.reint.streets} />
+                        <MenuItem primaryText={PersonStatus.reint.reintegrated} value={PersonStatus.reint.reintegrated} />
+                        <MenuItem primaryText={PersonStatus.reint.center} value={PersonStatus.reint.center} />
+                        <MenuItem primaryText={PersonStatus.reint.jail} value={PersonStatus.reint.jail} />
+                        <MenuItem primaryText={PersonStatus.reint.altHousing} value={PersonStatus.reint.altHousing} />
+                        <MenuItem primaryText={PersonStatus.reint.deceased} value={PersonStatus.reint.deceased} />
+                    </SelectField>
+                    <SelectField
+                        floatingLabelText="Education Level"
+                        value={PeopleState.editFormFields.status.education}
+                        style={{ width: '35vw' }}
+                        onChange={(event, key, payload) => {
+                            handleChange('status', 'education', payload)
+                        }}>
+                        <MenuItem primaryText={PersonStatus.ed.one} value={PersonStatus.ed.one} />
+                        <MenuItem primaryText={PersonStatus.ed.two} value={PersonStatus.ed.two} />
+                        <MenuItem primaryText={PersonStatus.ed.three} value={PersonStatus.ed.three} />
+                        <MenuItem primaryText={PersonStatus.ed.four} value={PersonStatus.ed.four} />
+                        <MenuItem primaryText={PersonStatus.ed.five} value={PersonStatus.ed.five} />
+                        <MenuItem primaryText={PersonStatus.ed.six} value={PersonStatus.ed.six} />
+                        <MenuItem primaryText={PersonStatus.ed.seven} value={PersonStatus.ed.seven} />
+                        <MenuItem primaryText={PersonStatus.ed.eight} value={PersonStatus.ed.eight} />
+                        <MenuItem primaryText={PersonStatus.ed.nine} value={PersonStatus.ed.nine} />
+                        <MenuItem primaryText={PersonStatus.ed.ten} value={PersonStatus.ed.ten} />
+                        <MenuItem primaryText={PersonStatus.ed.eleven} value={PersonStatus.ed.eleven} />
+                        <MenuItem primaryText={PersonStatus.ed.twelve} value={PersonStatus.ed.twelve} />
+                        <MenuItem primaryText={PersonStatus.ed.a0} value={PersonStatus.ed.a0} />
+                        <MenuItem primaryText={PersonStatus.ed.a1} value={PersonStatus.ed.a1} />
+                        <MenuItem primaryText={PersonStatus.ed.a2} value={PersonStatus.ed.a2} />
+                        <MenuItem primaryText={PersonStatus.ed.a3} value={PersonStatus.ed.a3} />
+                        <MenuItem primaryText={PersonStatus.ed.none} value={PersonStatus.ed.none} />
+                    </SelectField>
+                </Box>
+                <Box justifyContent="space-around">
+                    <SelectField
+                        floatingLabelText="HIV Status"
+                        value={PeopleState.editFormFields.status.health}
+                        style={{ width: '35vw' }}
+                        onChange={(event, key, payload) => {
+                            handleChange('status', 'health', payload)
+                        }}>
+                        <MenuItem primaryText={PersonStatus.health.HIV.positive} value={PersonStatus.health.HIV.positive} />
+                        <MenuItem primaryText={PersonStatus.health.HIV.negative} value={PersonStatus.health.HIV.negative} />
+                        <MenuItem primaryText={PersonStatus.health.HIV.unknown} value={PersonStatus.health.HIV.unknown} />
+                    </SelectField>
+                </Box>
+            </div>
+        )
+    } else {
+        content = (
+            <div>
                 <Box justifyContent="space-around">
                     <TextField
                         inputStyle={inputStyle}
@@ -202,7 +253,18 @@ const renderStatusSection = () => {
                 <Box justifyContent="space-around">
                     <TextField inputStyle={inputStyle} underlineShow={false} floatingLabelText="HIV Status" value={PeopleState.personToDetail.person.status.health} style={{ width: '35vw' }} />
                 </Box>
-            </Paper>
+            </div>
+        )
+    }
+    return (
+        <div>
+            <Subheader>
+                <Center justifyContent="space-between">
+                    <span>Status</span>
+                    {renderIconButton('status')}
+                </Center>
+            </Subheader>
+            <Paper>{content}</Paper>
         </div>
     )
 }

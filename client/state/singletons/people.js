@@ -44,9 +44,11 @@ class PeopleState {
                 dob: this.personToDetail.person.info.dob,
                 phone: this.personToDetail.person.info.phoneNumber
             },
-            reintegration: '',
-            education: '',
-            health: ''
+            status: {
+                reintegration: this.personToDetail.person.status.reintegration,
+                education: this.personToDetail.person.status.education,
+                health: this.personToDetail.person.status.health
+            }
         }
     }
 
