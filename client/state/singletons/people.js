@@ -14,21 +14,42 @@ class PeopleState {
     @observable showDetail = false
     @observable personToDetail
 
+    @observable editSection
+    @observable editFormFields
+
     @action
     setPanelOpen = open => {
         this.panelOpen = open
     }
 
     @action
-    setShowDetail = show => {
-        console.log('show detail')
-        this.showDetail = show
-    }
-
-    @action
     setPersonToDetail = person => {
         this.personToDetail = person
         this.showDetail = true
+    }
+
+    @action
+    setEditSection = section => {
+        this.editSection = section
+        this.editFormFields = {
+            info: {
+                firstName: this.personToDetail.person.info.firstName,
+                lastName: this.personToDetail.person.info.lastName,
+                address: this.personToDetail.person.info.address,
+                address2: this.personToDetail.person.info.address2,
+                city: this.personToDetail.person.info.city,
+                state: this.personToDetail.person.info.state,
+                country: this.personToDetail.person.info.country,
+                zip: this.personToDetail.person.info.postalCode,
+                dob: this.personToDetail.person.info.dob,
+                phone: this.personToDetail.person.info.phoneNumber
+            },
+            status: {
+                reintegration: this.personToDetail.person.status.reintegration,
+                education: this.personToDetail.person.status.education,
+                health: this.personToDetail.person.status.health
+            }
+        }
     }
 
     @observable
@@ -96,6 +117,25 @@ class PeopleState {
             } else {
                 this.resetForm()
                 this.setPanelOpen(false)
+            }
+        })
+    }
+
+    @observable editForm = {}
+
+    @action
+    formEdit = (field, value) => {
+        this.editFormFields[this.editSection][field] = value
+    }
+
+    @action
+    saveEdit = () => {
+        Meteor.call('updatePerson', this.personToDetail.person._id, this.editSection, this.editFormFields[this.editSection], err => {
+            if (err) {
+                console.log(err)
+            } else {
+                this.editSection = undefined
+                this.editFormFields = undefined
             }
         })
     }
