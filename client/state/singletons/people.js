@@ -17,6 +17,25 @@ class PeopleState {
     @observable editSection
     @observable editFormFields
 
+    @observable showCreateComment = false
+
+    @observable commentText
+
+    @action
+    createNewComment = () => {
+        this.showCreateComment = true
+    }
+
+    @action
+    cancelComment = () => {
+        this.showCreateComment = false
+    }
+
+    @action
+    setCommentText = text => {
+        this.commentText = text
+    }
+
     @action
     setPanelOpen = open => {
         this.panelOpen = open
@@ -136,6 +155,17 @@ class PeopleState {
             } else {
                 this.editSection = undefined
                 this.editFormFields = undefined
+            }
+        })
+    }
+
+    @action
+    submitComment = () => {
+        Meteor.call('submitComment', this.personToDetail.person._id, this.commentText, err => {
+            if (err) {
+                console.log(err)
+            } else {
+                this.showCreateComment = false
             }
         })
     }

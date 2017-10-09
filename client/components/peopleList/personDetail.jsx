@@ -6,10 +6,12 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
-import { Center, Box } from 'react-layout-components'
+import Dialog from 'material-ui/Dialog'
+import { Center, Box, VBox } from 'react-layout-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { observer } from 'mobx-react'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
+import Add from 'material-ui/svg-icons/content/add'
 
 import { PeopleState } from '../../directory/singletons'
 import PersonStatus from '../../constants/status'
@@ -30,6 +32,8 @@ const PersonDetail = ({ height }) => {
                 <div className="panel" style={{ height: height }}>
                     {renderInfoSection()}
                     {renderStatusSection()}
+                    {renderCommentSection()}
+                    {renderNewComment()}
                 </div>
             ) : null}
         </ReactCSSTransitionGroup>
@@ -266,5 +270,53 @@ const renderStatusSection = () => {
             </Subheader>
             <Paper>{content}</Paper>
         </div>
+    )
+}
+
+const renderCommentSection = () => {
+    return (
+        <div>
+            <Subheader>
+                <Center justifyContent="space-between">
+                    <span>Comments</span>
+                    <FlatButton label="New" icon={<Add />} onClick={PeopleState.createNewComment} />
+                </Center>
+            </Subheader>
+            <Paper>
+                {PeopleState.personToDetail.person.comments.map(c => {
+                    return (
+                        <VBox style={{ padding: 20 }}>
+                            <Box justifyContent="space-between">
+                                <span>Person Name</span>
+                                <span>Date</span>
+                            </Box>
+                            <p>{c.comment}</p>
+                        </VBox>
+                    )
+                })}
+            </Paper>
+        </div>
+    )
+}
+
+const renderNewComment = () => {
+    return (
+        <Dialog
+            open={PeopleState.showCreateComment}
+            title="New Comment"
+            modal
+            actions={
+                <Box justifyContent="flex-end">
+                    <FlatButton label="cancel" onClick={PeopleState.cancelComment} /> <FlatButton primary label="submit" onClick={PeopleState.submitComment} />
+                </Box>
+            }>
+            <TextField
+                style={{ width: '100%' }}
+                multiLine
+                onChange={(e, v) => {
+                    PeopleState.setCommentText(v)
+                }}
+            />
+        </Dialog>
     )
 }
