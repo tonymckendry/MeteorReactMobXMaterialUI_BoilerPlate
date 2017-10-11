@@ -121,16 +121,17 @@ export const Main = observer(
                         <AppBar
                             title="Persona"
                             iconElementLeft={
-                                PeopleState.panelOpen ? (
+                                PeopleState.panelOpen || PeopleState.personToDetail ? (
                                     <IconButton>
                                         <KeyboardArrowLeft />
                                     </IconButton>
                                 ) : null
                             }
                             onLeftIconButtonTouchTap={
-                                PeopleState.panelOpen
+                                PeopleState.panelOpen || PeopleState.personToDetail
                                     ? () => {
                                           PeopleState.setPanelOpen(false)
+                                          PeopleState.resetPersonToDetail()
                                       }
                                     : GeneralState.toggleDrawer
                             }

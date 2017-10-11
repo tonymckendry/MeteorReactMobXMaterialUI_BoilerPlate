@@ -11,6 +11,11 @@ class Person {
         this.person = person
     }
 
+    @action
+    updateState = person => {
+        this.person = person
+    }
+
     @observable person
 }
 
