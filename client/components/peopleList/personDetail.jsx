@@ -7,13 +7,15 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
 import Dialog from 'material-ui/Dialog'
+import Divider from 'material-ui/Divider'
 import { Center, Box, VBox, ScrollView } from 'react-layout-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { observer } from 'mobx-react'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Add from 'material-ui/svg-icons/content/add'
+import moment from 'moment'
 
-import { PeopleState } from '../../directory/singletons'
+import { PeopleState, UserState } from '../../directory/singletons'
 import PersonStatus from '../../constants/status'
 import { PersonaTheme } from '../theme/theme'
 
@@ -286,13 +288,19 @@ const renderCommentSection = () => {
             </Subheader>
             <Paper>
                 {PeopleState.personToDetail.person.comments.map(c => {
+                    let user = UserState.allUsers.filter(u => {
+                        return u._id === c.userId
+                    })[0]
+                    let userName = user.profile.firstName + ' ' + user.profile.lastName
+                    let formattedDate = moment(c.createdAt).fromNow()
                     return (
                         <VBox style={{ padding: 20 }}>
                             <Box justifyContent="space-between">
-                                <span>Person Name</span>
-                                <span>Date</span>
+                                <b>{userName}</b>
+                                <span>{formattedDate}</span>
                             </Box>
                             <p>{c.comment}</p>
+                            <Divider />
                         </VBox>
                     )
                 })}

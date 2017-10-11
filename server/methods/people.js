@@ -9,8 +9,8 @@ Meteor.methods({
         query[section] = fields
         People.update({ _id: personId }, { $set: query })
     },
-    submitComment: (personId, commentText) => {
-        let comment = { createdAt: new Date(), userId: this.userId, comment: commentText }
+    submitComment: (personId, commentText, userId) => {
+        let comment = { createdAt: new Date(), userId: userId, comment: commentText }
         People.update({ _id: personId }, { $push: { comments: comment } })
     }
 })
