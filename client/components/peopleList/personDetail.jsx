@@ -7,7 +7,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
 import Dialog from 'material-ui/Dialog'
-import { Center, Box, VBox } from 'react-layout-components'
+import { Center, Box, VBox, ScrollView } from 'react-layout-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { observer } from 'mobx-react'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
@@ -30,10 +30,12 @@ const PersonDetail = ({ height }) => {
         <ReactCSSTransitionGroup transitionName="example">
             {PeopleState.showDetail ? (
                 <div className="panel" style={{ height: height }}>
-                    {renderInfoSection()}
-                    {renderStatusSection()}
-                    {renderCommentSection()}
-                    {renderNewComment()}
+                    <ScrollView height={height - 64}>
+                        {renderInfoSection()}
+                        {renderStatusSection()}
+                        {renderCommentSection()}
+                        {renderNewComment()}
+                    </ScrollView>
                 </div>
             ) : null}
         </ReactCSSTransitionGroup>
