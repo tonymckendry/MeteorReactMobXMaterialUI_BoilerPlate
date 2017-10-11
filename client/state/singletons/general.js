@@ -1,5 +1,6 @@
 import { computed, observable, action, autorun } from 'mobx'
 import { Meteor } from 'meteor/meteor'
+import { AnState } from '../../directory/singletons'
 import _ from 'lodash'
 
 class GeneralState {
@@ -14,6 +15,8 @@ class GeneralState {
     changeAppFunction = appFunc => {
         this.appFunction = appFunc
         this.drawerOpen = false
+        //reset query fields.  not sure if this is the best way to do this - TPasque
+        AnState.clearQuery()
     }
 
     @observable drawerOpen = false
