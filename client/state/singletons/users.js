@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor'
 import _ from 'lodash'
 
 class UserState {
+    @observable allUsers = []
     @observable loginError = false
     @observable loading = false
     @observable authenticated = false

@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor'
 import _ from 'lodash'
 import observe from '../../observe-cursor'
 
-import { SubscriptionState } from '../../directory/singletons'
+import { SubscriptionState, UserState } from '../../directory/singletons'
 import { Person } from '../../directory/prototypes'
 import { People } from '../../../imports/api/people/people'
 
@@ -17,6 +17,25 @@ class PeopleState {
     @observable editSection
     @observable editFormFields
 
+    @observable showCreateComment = false
+
+    @observable commentText
+
+    @action
+    createNewComment = () => {
+        this.showCreateComment = true
+    }
+
+    @action
+    cancelComment = () => {
+        this.showCreateComment = false
+    }
+
+    @action
+    setCommentText = text => {
+        this.commentText = text
+    }
+
     @action
     setPanelOpen = open => {
         this.panelOpen = open
@@ -26,6 +45,12 @@ class PeopleState {
     setPersonToDetail = person => {
         this.personToDetail = person
         this.showDetail = true
+    }
+
+    @action
+    resetPersonToDetail = () => {
+        this.personToDetail = undefined
+        this.showDetail = false
     }
 
     @action
@@ -139,6 +164,17 @@ class PeopleState {
             }
         })
     }
+
+    @action
+    submitComment = () => {
+        Meteor.call('submitComment', this.personToDetail.person._id, this.commentText, Meteor.user()._id, err => {
+            if (err) {
+                console.log(err)
+            } else {
+                this.showCreateComment = false
+            }
+        })
+    }
 }
 
 const singleton = new PeopleState()
@@ -150,6 +186,18 @@ if (Meteor.isClient) {
             if (Meteor.user() && SubscriptionState.handles.people.ready()) {
                 let cursor = People.find({})
                 observe('People', singleton.allPeople, SubscriptionState.handles.people, cursor, singleton.loading, Person)
+            }
+        })
+    })
+}
+if (Meteor.isClient) {
+    Meteor.startup(() => {
+        Tracker.autorun(function() {
+            if (Meteor.user() && SubscriptionState.handles.users.ready()) {
+                let cursor = Meteor.users.find({})
+                console.log('user cursor')
+                console.log(cursor)
+                observe('Users', UserState.allUsers, SubscriptionState.handles.users, cursor, UserState.loading)
             }
         })
     })

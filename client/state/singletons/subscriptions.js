@@ -8,7 +8,8 @@ import { PeopleState } from '../../directory/singletons'
 
 class SubscriptionState {
     handles = {
-        people: {}
+        people: {},
+        users: {}
     }
 }
 
@@ -19,5 +20,6 @@ if (Meteor.isClient) {
     Meteor.startup(() => {
         // singleton.getShifts.start()
         singleton.handles.people = Meteor.subscribe('people')
+        singleton.handles.users = Meteor.subscribe('users')
     })
 }
