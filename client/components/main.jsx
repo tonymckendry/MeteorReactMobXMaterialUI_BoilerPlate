@@ -109,7 +109,7 @@ export const Main = observer(
                         content = <PeopleList height={this.state.window.height} />
                         break
                     case 'Analytics':
-                        content = <Analytics />
+                        content = <Analytics height={this.state.window.height} />
                         break
                     case 'Settings':
                         content = <Settings />

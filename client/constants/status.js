@@ -32,6 +32,11 @@ const PersonStatus = {
             negative: 'HIV Negative',
             unknown: 'HIV Unknown'
         }
+    },
+    category: {
+        reint: 'Reintegration',
+        ed: 'Education',
+        health: 'Health'
     }
 }
 
