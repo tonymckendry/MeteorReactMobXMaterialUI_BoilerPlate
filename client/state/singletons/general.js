@@ -15,8 +15,6 @@ class GeneralState {
     changeAppFunction = appFunc => {
         this.appFunction = appFunc
         this.drawerOpen = false
-        //reset query fields.  not sure if this is the best way to do this - TPasque
-        AnState.clearQuery()
     }
 
     @observable drawerOpen = false

@@ -3,12 +3,8 @@ import autorun from 'meteor/space:tracker-mobx-autorun'
 
 import observe from '../../observe-cursor'
 
-import { PeopleState } from '../../directory/singletons'
-// import {  } from '../../directory/prototypes'
-
 class SubscriptionState {
     handles = {
-        people: {},
         users: {}
     }
 }
@@ -19,7 +15,6 @@ export default singleton
 if (Meteor.isClient) {
     Meteor.startup(() => {
         // singleton.getShifts.start()
-        singleton.handles.people = Meteor.subscribe('people')
         singleton.handles.users = Meteor.subscribe('users')
     })
 }

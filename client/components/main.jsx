@@ -23,12 +23,13 @@ import KeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-lef
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Login from './login/login'
-import { PersonaTheme } from './theme/theme'
+import { theme } from './theme/theme'
 import Dashboard from './dashboard/dashboard'
 import PeopleList from './peopleList/peopleList'
 import Analytics from './analytics/analytics'
 import Settings from './settings/settings'
-import { UserState, GeneralState, PeopleState } from '../directory/singletons'
+import { UserState } from '../directory/singletons'
+import GeneralState from '../state/singletons/general'
 
 export const Main = observer(
     React.createClass({
@@ -37,7 +38,7 @@ export const Main = observer(
         _renderDrawer() {
             return (
                 <Drawer open={GeneralState.drawerOpen} docked={false} onRequestChange={open => GeneralState.toggleDrawer(open)}>
-                    <Paper style={{ padding: '20px', backgroundColor: PersonaTheme.palette.primary1Color, color: 'white' }}>
+                    <Paper style={{ padding: '20px', backgroundColor: theme.palette.primary1Color, color: 'white' }}>
                         <Box>
                             <Center>
                                 <Avatar size={50}>
@@ -92,7 +93,7 @@ export const Main = observer(
         },
         _getListItemColor(item) {
             if (GeneralState.appFunction === item) {
-                return PersonaTheme.palette.accent1Color
+                return theme.palette.accent1Color
             } else {
                 return null
             }
@@ -119,22 +120,10 @@ export const Main = observer(
                     <Page>
                         {this._renderDrawer()}
                         <AppBar
-                            title="Persona"
-                            iconElementLeft={
-                                PeopleState.panelOpen || PeopleState.personToDetail ? (
-                                    <IconButton>
-                                        <KeyboardArrowLeft />
-                                    </IconButton>
-                                ) : null
-                            }
-                            onLeftIconButtonTouchTap={
-                                PeopleState.panelOpen || PeopleState.personToDetail
-                                    ? () => {
-                                          PeopleState.setPanelOpen(false)
-                                          PeopleState.resetPersonToDetail()
-                                      }
-                                    : GeneralState.toggleDrawer
-                            }
+                            title="Nexgen"
+                            onLeftIconButtonTouchTap={() => {
+                                GeneralState.toggleDrawer()
+                            }}
                             style={{ boxShadow: '0px 2px 5px rgba(0,0,0,.5)' }}
                         />
                         {content}
@@ -143,7 +132,7 @@ export const Main = observer(
             } else {
                 component = <Login />
             }
-            return <MuiThemeProvider muiTheme={getMuiTheme(PersonaTheme)}>{component}</MuiThemeProvider>
+            return <MuiThemeProvider muiTheme={getMuiTheme(theme)}>{component}</MuiThemeProvider>
         }
     })
 )

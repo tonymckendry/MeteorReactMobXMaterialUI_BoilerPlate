@@ -3,12 +3,12 @@ import { Page, Center, VBox } from 'react-layout-components'
 import { observer } from 'mobx-react'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
-import { PersonaTheme } from '../theme/theme'
+import { theme } from '../theme/theme'
 import UserState from '../../state/singletons/users'
 
 const Login = () => {
     return (
-        <Page style={{ background: 'linear-gradient(135deg, ' + PersonaTheme.palette.primary1Color + ', ' + PersonaTheme.palette.accent1Color + ')' }}>
+        <Page style={{ background: 'linear-gradient(135deg, ' + theme.palette.primary1Color + ', ' + theme.palette.accent1Color + ')' }}>
             <Center column height="100%">
                 <form onSubmit={handleLogin}>
                     <VBox>
