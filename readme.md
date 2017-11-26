@@ -29,7 +29,7 @@ This will run a development server at http://localhost:3000
 The biggest advantages Meteor gives us are the ability to build iOS and Android App Binaries using one Javascript codebase as well as it's tight DDP integration with MongoDB which allows for true
 real-time reactivity. It also comes with some nice stuff built in, like the user accounts and oAuth packages. Ultimately, it is the backbone of the entire App.
 
-#### Frontend Layout and Design
+### Frontend Layout and Design
 
 [**Material Design Guidelines**](https://material.io/guidelines/)
 
