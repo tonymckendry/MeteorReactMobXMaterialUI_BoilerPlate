@@ -1,6 +1,6 @@
 ## Generic Meteor App Boilerplate
 
-#### Developing Locally
+### Developing Locally
 
 ```
 git clone
@@ -16,7 +16,7 @@ npm start
 
 This will run a development server at http://localhost:3000
 
-#### Default Login
+### Default Login
 
 **Username**: admin
 
@@ -42,14 +42,14 @@ guidelines from Google as closely as possible and avoid doing lots of unnecessar
 
 These Flexbox-based components are the basic building blocks for the UI - they are very powerful and customizable.
 
-#### State Management
+### State Management
 
 [**MobX**](https://mobx.js.org/)
 
 MobX controls everything about the frontend of the App - it hooks into the Meteor DDP connection to the server/DB and maintains real time reactivity to any changes in data that may occur in the
 database while also acting as the management for every state in the UI.
 
-#### Database
+### Database
 
 [MongoDB](https://www.mongodb.com/)
 
